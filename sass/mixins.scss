@@ -1,0 +1,143 @@
+@use "sass:meta";
+//mixins ci permette raggruppare certi stili e riutilizzarli durante il codice
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  @include center;
+}
+
+.footer {
+  @include center;
+}
+////////////////////
+@mixin crear-grid($rows, $columns, $gap) {
+  display: grid;
+  grid-template-rows: repeat($rows, 1fr);
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+//come una funzione con parametri,il valore dei parametri si può cambiare.
+//sotto definisco i parametri o le props di crear-grid con valori di basse e dopo li includo con i valori cambiati
+$filas: 5;
+$columnas: 8;
+$gutters: 30px;
+//non è obbligatorio dichiarare le variabili props come sopra per ilprimo caso sotto
+.main {
+  @include crear-grid(6, 5, 20px);
+}
+//Oppure li posso usare con il nome, e prendono il valore che gli ho dato prima
+.main {
+  @include crear-grid($filas, $columnas, $gutters);
+}
+///////////////////
+//ATTENZIONE ALL'ORDINE
+//VALORI OPZIONALI
+@mixin grid-generator(
+  $selector,
+  $columna-i: 1,
+  $columna-t: 2,
+  $validar: false
+) {
+  //sopra ho dato un valore per difetto a due argomenti. Così se non li cito prenderanno il loro valore per difetto
+  @if ($validar) {
+    display: grid;
+  }
+
+  &__#{$selector} {
+    grid-column: #{$columna-i}/#{$columna-t};
+  }
+}
+.hero {
+  @include grid-generator(img);
+  @include grid-generator(title, 3, -1, false);
+  @include grid-generator(button, 2, -1, false);
+}
+
+//TRUCCO DA FARE CON MIXINS
+@mixin addImage($img, $repeat, $size) {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background: {
+    image: url($img);
+    repeat: $repeat;
+    size: $size;
+  }
+  //Invece di dover elencare ogni valore di background, sopra per esempio image corrisponde a background-image
+  animation: {
+    duration: 1s;
+    name: show;
+    delay: 0.5s;
+  }
+
+  margin: {
+    top: 0px;
+    left: 0px;
+  }
+}
+
+.hero {
+  @include addImage("uno.png", no-repeat, cover);
+}
+
+//LISTAS DE ARGUMENTOS EN MIXIN
+
+@mixin addTransition($propriedad, $valor, $selectores...) {
+  //i tre punti dopo selectore lo rende una lista
+  @each $selector in $selectores {
+    #{$selector} {
+      #{$propriedad}: $valor;
+      //Ricorda che le proprietà si interpolan #{}
+      &:hover {
+        #{$propriedad}: unset;
+      }
+    }
+  }
+}
+
+@include addTransition(opacity, 0, h1, ".hero", h3, a);
+
+//@CONTENT
+
+@mixin crear-layout($lista...) {
+  //i 3 punti oltre a creare delle liste, creno mappe con variablili chiave:valore. Si usa il modulo @use sass:meta
+
+  @each $propriedad, $valor in meta.keywords($lista) {
+    #{$propriedad}: $valor;
+  }
+}
+
+.eroe {
+  @include crear-layout($display: grid, $gap: 1em, $color: red);
+}
+
+//SI POSSONO AGGIUNGERE BLOCCHI DI CONTENUTO (BLOCCHI DI CODICE) OLTRE CHE ARGOMENTI
+
+@mixin crear-diseno($rows, $columns) {
+  display: grid;
+  grid-template-rows: repeat($rows, 1fr);
+  grid-template-columns: repeat($columns, 1fr);
+
+  @media (max-width: 500px) {
+    @content($rows);
+    //content è quello che aggiungo a .code, il contenuto dentro le parentesi graffe di include.Ma se voglio usare le variabili come valori, devo passarli e content e a include con using
+  }
+}
+
+.code {
+  @include crear-diseno(5, 6) using ($rows){
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: $rows;
+    color: #000;
+
+    &__title{
+        background-color: #fff;
+    }
+  }
+}

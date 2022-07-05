@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/*meta stampa nel terminale che cos'è, per esempio, un certo valore*/
+body {
+  font-size: 5px;
+}
+
+.title {
+  text-align: center;
+}
+
+.grid {
+  grid-template-areas: "header header header";
+}
+
+/*# sourceMappingURL=valores.css.map */

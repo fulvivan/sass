@@ -1,0 +1,21 @@
+@for $iterador from 1 to 5 {
+  .selector-#{$iterador} {
+    color: crimson;
+  }
+}
+//Il ciclo @for ripete o renderizza il valore 4 volte perchè from 1 to 5.
+//Se voglio che finisca in 10 faccio from 1 through 5
+//Può essere discendente, da 10 a 5
+//Iteratore=ripetitore
+@for $iterador from 1 through 5 {
+  .animation__name--#{$iterador} {
+    animation-name: name#{$iterador};
+    animation-duration: 1s * $iterador;
+
+    @keyframes name#{$iterador} {
+      100% {
+        transform: translate(100% * $iterador);
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@use 'sass:meta';
+@use 'sass:list';
+//list permette di scegliere quale valore di una lista voglio applicare. Se il primo(1), il secondo(2)....
+
+$color: rgba(0,0,0);
+@debug meta.type-of($color);
+//dice che è un colore
+
+$boxshadow: 1px 1px 20px;
+@debug meta.type-of($boxshadow);
+//dice che è una lista. 
+//le liste contengono una sequenza di valori. gli elementi in lista possono essere separati da spazio, virgola oppure dentro parentesi quadre tipo: [hola] [hola]. dentro parentesi è una lista anche se è un elemento solo
+
+$margen: 10px 20px 40px 30px;
+
+.grid{
+    margin-top: list.nth($margen, 1);
+    margin-bottom: list.nth($margen, 3);
+    margin-left: list.nth($margen, 4);
+    margin-right: list.nth($margen, 2);
+}

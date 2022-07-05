@@ -1,0 +1,61 @@
+@charset "UTF-8";
+.hero {
+  background-color: steelblue;
+}
+.hero nav {
+  display: flex;
+}
+.hero nav li {
+  list-style: none;
+}
+.hero nav li a {
+  text-decoration: none;
+}
+
+/*Il codice sotto è molto lungo e noioso. Ripeto meglio sopra
+NESTING
+*/
+.home,
+.main {
+  font-size: 2rem;
+}
+.home .cta,
+.main .cta {
+  color: #000;
+}
+.home .title,
+.main .title {
+  font-size: 4rem;
+}
+.home .title span,
+.main .title span {
+  font-weight: bold;
+}
+@media (min-width500px) {
+  .home .title,
+.main .title {
+    text-decoration: none;
+  }
+}
+@media (min-width: 500px) {
+  .home,
+.main {
+    background-color: red;
+    display: grid;
+  }
+}
+
+.card {
+  color: teal;
+}
+.card:hover {
+  color: crimson;
+}
+:not(.card) {
+  opacity: 0;
+}
+.card__title {
+  text-align: center;
+}
+
+/*# sourceMappingURL=nesting.css.map */

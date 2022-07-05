@@ -1,0 +1,33 @@
+$primario: royalblue !default;
+//Inoltre aggiungendo !default si può fare configurabile e vuol dire che può essere cambiato il suo valore in unaltro foglio scrivendo in index with () &primario: yellow
+$globale: Arial;
+$size: 16+3px;
+//Si possono fare operazioni. e su css appare il risultato
+
+:root {
+  --primario: #{$primario};
+}
+//Così creo una custom properties che funziona benissimo in css
+
+.title {
+  font-size: $size * 2;
+}
+
+.hero {
+  $globale: cursive !global;
+  //posso cambiare il valore di una variabile come sopra da dentro un blocco, ma vale solo per quel blocco. Se voglio che cambi in modo globale devo aggiungere:!global.//Ma cambia dalla riga in cui ho cambiato la variabile, in giù. Quello che scritto sopra seguono la variabile originale
+  font-family: $globale;
+  color: #fff;
+  $font: 2rem;
+
+  h1 {
+    font-size: $font;
+  }
+  //NESTING
+  // In SASS si può annidare come sopra .hero-h1
+}
+
+//Automaticamente si crea un foglio uguale in CSS, ma io non voglio. Voglio che si compili tutto dentro a index.css. Allora cancello i nuovi fogli variables.css e cambio il foglio variables.scss in _variables.scss.
+//QUESTO SI CHIAMA -PARTIALS-
+//Ora in index.scss chiamo il foglio variables così: @use 'variables; e viene portato in index.css, ma...
+// posso usare anche le variabili che ho qui in index.scss scrivendo: variables.$primario. Questo ci serve perche posso avere un foglio solo per definire tutte le variabili che useremo nel nostro codice. Come colore, fonte....

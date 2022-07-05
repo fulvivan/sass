@@ -1,0 +1,35 @@
+//Valori boleani:true o false
+//E' considerato false solo il valore false e il valore null. Tuuti gli altri valori sono true
+$condicional: "Hola mundo";
+
+@if ($condicional) {
+  .grid {
+    display: grid;
+  }
+} @else {
+  .flexbox {
+    display: flex;
+  }
+}
+//Se l'espressione @condicional è vera allora entra in .grid, altrimenti in .flexbos
+//Qualsiasi valore darò a $condicional darà true e entra in .grid. Però se lascio, per esempio, il campo del valore vuoto, allora sarà null e darà false e quindi entra in .flexbox
+//Si può anche togliere l'else se si vuole che nel caso sia false non succede niente.
+
+@debug 100 > 80;
+//dice true perchè si, 100 è maggiore di 80.
+@debug 101 >= 100;
+//dice true. maggiore e uguale: >=
+// uguale: ==.
+@debug 100 == 100;
+// differente: !=
+
+$display: grid;
+
+.hero {
+  @if $display == grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  } @else {
+    display: $display;
+  }
+}

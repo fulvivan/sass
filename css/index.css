@@ -1,0 +1,47 @@
+@charset "UTF-8";
+:root {
+  --primario: yellow;
+}
+
+.title {
+  font-size: 38px;
+}
+
+.hero {
+  font-family: cursive;
+  color: #fff;
+}
+.hero h1 {
+  font-size: 2rem;
+}
+
+/*con with cambio il valore della variabile primario nel foglio variables perchè avevo scritto !default*/
+body {
+  color: yellow;
+}
+
+/*
+Così ho chiamato il contenuto del foglio variables in index.css
+*/
+h1 {
+  font-size: "Arial";
+  color: crimson;
+}
+
+.title {
+  color: var(--primario);
+}
+
+h3 {
+  color: crimson;
+}
+
+/*
+In Sass per fare una variabile non serve metterla in un selettore come con la custom-property di CSS. 
+E non serve usare la funzione var() per chiamare la variabile
+*/
+/*
+Questo commento appare anche in index.css. Quello sopra no. 
+*/
+
+/*# sourceMappingURL=index.css.map */

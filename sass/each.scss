@@ -1,0 +1,42 @@
+$margens: 1 2 3 4 5;
+
+// @each $variable in $ lista{}
+
+@each $margen in $margens {
+  .m-#{$margen} {
+    margin: $margen * 1em;
+  }
+};
+//Produce 5 elementi della lista con color:#000. Conserva tutto nella variabile $margen
+
+$estilos: (
+  "primary": crimson,
+  "secondary": steelblue,
+  "shadow": 1px 1px solid #000
+);
+
+@each $clave, $valor in $estilos {
+  .#{$clave} {
+    @if ($clave != "shadow") {
+      color: $valor;
+    }
+    @else {
+      box-shadow: $valor;
+    }
+  }
+}
+
+$lista:
+'card' color 3s,
+'nav' clip-path 2s,
+'footer' margin 1s;
+
+//Il primo valore rappresenta una transizione il secondo è la proprieta della transizione e il terzo è la durata della transizione
+//sotto nell'each ci sono 3 variabili perche ci sono 3 valori dentro a lista
+
+@each $selector, $propriedad, $duracion in $lista{
+.#{$selector}{
+    transition-property: $propriedad;
+    transition-duration: $duracion;
+}
+}

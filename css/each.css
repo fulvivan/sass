@@ -1,0 +1,48 @@
+.m-1 {
+  margin: 1em;
+}
+
+.m-2 {
+  margin: 2em;
+}
+
+.m-3 {
+  margin: 3em;
+}
+
+.m-4 {
+  margin: 4em;
+}
+
+.m-5 {
+  margin: 5em;
+}
+
+.primary {
+  color: crimson;
+}
+
+.secondary {
+  color: steelblue;
+}
+
+.shadow {
+  box-shadow: 1px 1px solid #000;
+}
+
+.card {
+  transition-property: color;
+  transition-duration: 3s;
+}
+
+.nav {
+  transition-property: clip-path;
+  transition-duration: 2s;
+}
+
+.footer {
+  transition-property: margin;
+  transition-duration: 1s;
+}
+
+/*# sourceMappingURL=each.css.map */

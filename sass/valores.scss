@@ -1,0 +1,42 @@
+@use 'sass:math';
+//math permette dividere in sass al posto del segno / che si usa in css
+@use 'sass:string';
+//string permette togliere e mettere le virgolette
+@use 'sass:meta';
+/*meta stampa nel terminale che cos'è, per esempio, un certo valore*/
+$variable: 100;
+$pixeles: 100px;
+
+//Con il @debug posso vedere nel terminale il risultato di quello che scrivo dopo @debug
+@debug "El valor es ugual a" 100 * 100;
+//Oppure interpolare e così sembra lo stesso tessto
+@debug 'El valor es egual a #{ 100 * 100 }';
+
+body{
+    font-size: math.div(25,5) * 1px;
+}
+
+//In SASS ci sono due tipi di string o testi: 
+// quoted string ''
+// unquoted string -senza ''-
+
+$string-comillas: 'center';
+$string-sincomillas: header header header ;
+
+@debug meta.type-of($string-sincomillas);
+//sincomillas è un list, dice meta nel terminale, e essendo una lista, se ha spazi al centro non si può trasformare in string. Vedremo cosa sono le list.
+//I valori di string sono: number, bool (boolean), string, list, color
+
+.title{
+    text-align: string.unquote($string-comillas);
+}
+//string.unquote permette togliere le virgolette, ma non aggiungerle dove non ci sono come ho fatto sotto.
+// .grid{
+//     grid-template-columns: string.quote($string-sincomillas);
+// }
+//Quindi faccio così:
+.grid{
+    grid-template-areas: '#{$string-sincomillas}';
+}
+//Con l'interpolazione
+

@@ -1,0 +1,19 @@
+//per usare funzioni si devono dichiarare con @function nome
+@use "sass:math";
+
+@function pixelesToEm($pixeles ) {
+  $unidad: math.div($pixeles, 1px);
+
+  $resultado: math.div($unidad, 16);
+  @return $resultado * 1em;
+}
+//contando px e px il risultato è un munero senza px
+//Così unidad trasforma i px in numero senza unità, e resultado divide il numero in 16 che è quanto vale 1 em (1px=16em)
+//poi si aggiunge a resultado * 1em e così aggiunge al numero l'unità em
+.title {
+  $font-size: 32px;
+  font-size: pixelesToEm(40px);
+}
+.hero__title {
+  font-size: pixelesToEm(100px);
+}

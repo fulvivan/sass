@@ -1,0 +1,31 @@
+@use 'sass:meta';
+@use 'sass:map';
+
+//Le mappe sono utili perchè associamo a ogni valore una chiave o un valore chiave.
+//La chiave è il nome della variabile tra le virgolette e il valore è il valore, per esempio 3px 
+//Se voglio accedere a questa chiave 
+//Nel caso della lista, è simile, ma non si può ripetere. Nel mappa si, sipuò ripetere
+
+$colores: (
+// 'key' : crimson,
+'primary': royalblue,
+//'primary': non si può ripetere la stessa chiave. Però si può ripetere il valore tipo: 'secondary': royalblue,
+'secondary': crimson,
+'buttons': teal,
+);
+
+@debug meta.type-of($colores);
+//dice:map
+
+h1 {
+  color: map.get($colores, 'primary')
+}
+
+h1 {
+  color: map.get($colores, 'secondary');
+}
+
+button{
+  color: map.get($colores, 'buttons')
+};
+//Sempre (key=variabile)colores:(valore)'button'

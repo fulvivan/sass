@@ -1,0 +1,10 @@
+.grid {
+  display: grid;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/*# sourceMappingURL=condicionales.css.map */

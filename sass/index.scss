@@ -1,0 +1,51 @@
+@use "variables" with (
+    $primario: yellow
+);
+/*con with cambio il valore della variabile primario nel foglio variables perchè avevo scritto !default*/
+
+//INTERPOLACION
+// $selector: '.hero';
+// $propiedad: 'grid-template-columns';
+
+// #{$selector}{
+//     #{$propiedade}: #000;
+// }
+//SOPRA NON HO CAPITO
+
+body{
+    color: variables.$primario;
+}
+/*
+Così ho chiamato il contenuto del foglio variables in index.css
+*/
+
+$primary: crimson;
+
+h1 {
+  $font: "Arial";
+
+  font-size: $font;
+  color: $primary;
+}
+
+.title {
+  color: var(--primario);
+}
+//Recupera la variabile in variables.scss senza scrivere prima da dove prenderla , coma body, perchè ora è una custom propertis css e css non ne ha bisogno. Si chiama con il nome del modulo solo quando è sintassi non nativa di css
+
+h3 {
+  color: $primary;
+}
+/*
+In Sass per fare una variabile non serve metterla in un selettore come con la custom-property di CSS. 
+E non serve usare la funzione var() per chiamare la variabile
+*/
+
+// nel terminale: sass --watch sass:css
+//crea e conserva tutti i fogli che creo in sass anche in css. E watch-vede i cambi e li aggiorna anche in css
+
+/*
+Questo commento appare anche in index.css. Quello sopra no. 
+*/
+
+
